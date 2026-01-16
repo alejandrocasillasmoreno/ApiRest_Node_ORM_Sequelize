@@ -2,22 +2,31 @@
 import fs from "fs";
 import path from "path";
 
+
+// 1. CONFIGURACIÓN DE RUTAS
+
+// Definimos dónde se encuentran los modelos y dónde se generarán los archivos.
 const modelsPath = "./models";
 const controllersPath = "./controllers";
 const controllersBasePath = "./controllers/base";
 const servicesPath = "./services";
 const routesPath = "./routes";
 
+// 2. INICIALIZACIÓN DE DIRECTORIOS
+
+// Creamos las carpetas necesarias si no existen (recursive: true crea subcarpetas).
 fs.mkdirSync(controllersPath, { recursive: true });
 fs.mkdirSync(controllersBasePath, { recursive: true });
 fs.mkdirSync(servicesPath, { recursive: true });
 fs.mkdirSync(routesPath, { recursive: true });
 
+// 3. LECTURA Y FILTRADO DE MODELOS
 
 // Filtramos solo los modelos (sin incluir init-models.js)
 const models = fs.readdirSync(modelsPath)
   .filter(f => f.endsWith(".js") && f !== "init-models.js");
 
+// 4. BUCLE PRINCIPAL DE GENERACIÓN
 for (const modelFile of models) {
   const modelName = path.basename(modelFile, ".js"); // ejemplo: productos
   const modelClass = modelName.charAt(0).toUpperCase() + modelName.slice(1); // Productos
@@ -155,9 +164,12 @@ router.delete("/:id", eliminar${modelClass.slice(0, -1)});
 
 export default router;
 `;
-
+// Escribimos el archivo de rutas
   fs.writeFileSync(`${routesPath}/${modelName}Routes.js`, routeContent);
+  
+// Feedback visual para el desarrollador
   console.log(`✅ CRUD generado para: ${modelName}`);
 }
+
 
 console.log("🎉 Todos los controladores y rutas han sido generados correctamente.");
