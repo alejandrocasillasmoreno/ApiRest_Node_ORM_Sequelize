@@ -39,12 +39,18 @@ La característica principal es su sistema de **AutoCRUD**, capaz de leer la bas
 
 ---
 
-## ⚙️ Cómo usar el AutoCRUD (Workflow del Examen)
+## ⚙️ Cómo usar el AutoCRUD
+Una vez que existen los modelos, ejecuta el script de automatización para generar la estructura MVC (Controladores, Servicios y Rutas):
+node autocrud.js
 
-Si la base de datos cambia (ej. añades una tabla nueva), sigue estos pasos estrictos para regenerar la API automáticamente:
+### Lanzar el Servidor
+Para iniciar la API en modo desarrollo (con reinicio automático nodemon):
+npm run dev
+Y nos debera aparecer esto: http://localhost:3000
 
-### Paso 1: Generar Modelos (Reverse Engineering)
-Este comando conecta con MySQL y crea los archivos en la carpeta `/models`.
+### Ejemplos de Endpoints
+Método,Endpoint,Descripción,Body (JSON) Ejemplo
+POST,/log,Crear un registro nuevo,"{ ""log"": ""Mensaje de prueba"" }"
+PUT,/log/:id,Actualizar registro existente,"{ ""log"": ""Mensaje editado"" }"
+DELETE,/log/:id,Eliminar registro
 
-```bash
-npm run db:generate
