@@ -49,8 +49,11 @@ npm run dev
 Y nos debera aparecer esto: http://localhost:3000
 
 ### Ejemplos de Endpoints
-Método,Endpoint,Descripción,Body (JSON) Ejemplo
-POST,/log,Crear un registro nuevo,"{ ""log"": ""Mensaje de prueba"" }"
-PUT,/log/:id,Actualizar registro existente,"{ ""log"": ""Mensaje editado"" }"
+POST,/log,Crear un registro nuevo,
+"{ ""log"": ""Mensaje de prueba"" }"
+
+PUT,/log/:id,Actualizar registro existente,
+"{ ""log"": ""Mensaje editado"" }"
+
 DELETE,/log/:id,Eliminar registro
 
